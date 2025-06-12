@@ -341,6 +341,9 @@
         .page-break {
             page-break-after: always;
         }
+        p {
+            text-align: justify;
+        }
     </style>
 
 <body>
