@@ -291,11 +291,11 @@
         <h2>CLÁUSULA 1ª – DO OBJETO DO CONTRATO</h2>
         <p><strong>1.1.</strong> O objeto do presente contrato é a locação do seguinte veículo automotor:</p>
         <ul>
-            <li><strong>Veículo:</strong> Renault/ Logan </li>
-            <li><strong>Cor:</strong> Preto </li>
-            <li><strong>Ano modelo:</strong> 2016 </li>
-            <li><strong>Placa:</strong> PKI-2C18 </li>
-            <li><strong>Renavam nº:</strong> 01110476636 </li>
+            <li><strong>Veículo:</strong> {{$locacao->Veiculo->Marca->nome}} / {{$locacao->Veiculo->modelo}}</li>
+            <li><strong>Cor:</strong> {{$locacao->Veiculo->cor}}</li>
+            <li><strong>Ano modelo:</strong> {{$locacao->Veiculo->ano}}</li>
+            <li><strong>Placa:</strong> {{$locacao->Veiculo->placa}}</li>
+            <li><strong>Renavam nº:</strong> {{$locacao->Veiculo->renavam}}</li>
         </ul>
         <p><strong>1.2.</strong> O automóvel será utilizado apenas na cidade de São Paulo, não sendo permitido rodar no interior, litoral e em outro estado.</p>
         <p><strong>1.3.</strong> O uso do veículo é exclusivo do LOCATÁRIO, não sendo permitido sub-rogar os direitos a terceiros ou permitir que outra pessoa conduza o veículo sem autorização expressa do LOCADOR.</p>
