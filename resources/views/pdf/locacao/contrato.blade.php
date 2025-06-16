@@ -489,7 +489,7 @@
     <div class="clause">
         <h2>CLÁUSULA 12ª – DA VIGÊNCIA E RESCISÃO</h2>
         <p><strong>12.1. Vigência:</strong></p>
-        <p><strong>12.1.1.</strong> O contrato tem vigência a partir de 22/08/2024, com prazo mínimo de 90 dias, renovando-se automaticamente após este período.</p>
+        <p><strong>12.1.1.</strong> O contrato tem vigência a partir de <b>{{\Carbon\Carbon::parse($locacao->data_saida)->format('d/m/Y')}}</b>, com prazo mínimo de 90 dias, renovando-se automaticamente após este período.</p>
         <p><strong>12.1.2.</strong> Após 90 dias, qualquer uma das partes pode rescindir o contrato a qualquer tempo, mediante comunicação à outra parte.</p>
 
         <p><strong>12.2. Rescisão Antecipada:</strong></p>
