@@ -464,7 +464,7 @@
 
     <div class="clause">
         <h2>CLÁUSULA 10ª – DA CAUÇÃO</h2>
-        <p><strong>10.1.</strong> Fica estabelecida a quantia caução no valor de <strong>R$ 1.000,00 (Mil Reais)</strong>.</p>
+        <p><strong>10.1.</strong> Fica estabelecida a quantia caução no valor de <strong>R$ {{ number_format($locacao->valor_caucao, 2, ',', '.') }}</strong>.</p>
         <p><strong>10.2.</strong> A caução será restituída integralmente em até 30 dias corridos após a devolução do veículo, desde que:</p>
         <ul>
             <li>O veículo seja devolvido em perfeito estado, conforme a vistoria inicial.</li>
