@@ -68,5 +68,13 @@ class ContasPagarHoje extends BaseWidget
                 ->money('BRL'),
 
             ]);
+            // Table\Actions\ActionGroup::make([
+            //     Tables\Actions\EditAction::make(),
+            //     Tables\Actions\Action::make('ir_contas_receber')
+            //         ->label('Quitar Parcela')
+            //         ->icon('heroicon-o-arrow-right')
+            //         ->url(fn ($record) => route('filament.admin.resources.contas-receber.edit', ['record' => $record->id]))
+            //         ->openUrlInNewTab(),                
+            // ]);
     }
 }

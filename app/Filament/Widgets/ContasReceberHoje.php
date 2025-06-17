@@ -6,6 +6,7 @@ use App\Models\ContasReceber;
 use Filament\Tables;
 use Filament\Tables\Columns\Summarizers\Sum;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\Action;
 use Filament\Widgets\TableWidget as BaseWidget;
 
 class ContasReceberHoje extends BaseWidget
@@ -43,22 +44,7 @@ class ContasReceberHoje extends BaseWidget
                 ->badge()
                 ->color('danger')
                 ->date(),
-          /*  Tables\Columns\TextColumn::make('valor_total')
-                ->label('Valor Total')
-                ->alignCenter()
-                ->badge()
-                ->color('success')
-                 ->money('BRL'),
-            Tables\Columns\SelectColumn::make('formaPgmto')
-                ->Label('Forma de Pagamento')
-                ->disabled()
-                ->options([
-                    1 => 'Dinheiro',
-                    2 => 'Pix',
-                    3 => 'Cartão',
-                    4 => 'Boleto',
-                ]),*/
-
+          
 
 
             Tables\Columns\TextColumn::make('valor_parcela')
@@ -70,5 +56,14 @@ class ContasReceberHoje extends BaseWidget
                 ->money('BRL'),
 
             ]);
+            // ->actions([
+                                  
+            //         Action::make('ir_contas_receber')
+            //             ->label('Quitar Parcela')
+            //             ->icon('heroicon-o-arrow-right')
+            //             ->url(fn ($record) => route('filament.admin.resources.contas-receber.edit', ['record' => $record->id]))
+            //             ->openUrlInNewTab(), 
+            // ]);
+            
     }
 }
