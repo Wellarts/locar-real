@@ -457,7 +457,8 @@
     <div class="clause">
         <h2>CLÁUSULA 9ª – DO PAGAMENTO E REAJUSTE</h2>
         <p><strong>9.1. Pagamento Semanal:</strong></p>
-        <p><strong>9.1.1.</strong> O LOCATÁRIO pagará ao LOCADOR o valor de <strong>R$ 600,00 (Seiscentos reais)</strong> toda segunda-feira, via PIX.</p>
+        <p><strong>9.1.1.</strong> O LOCATÁRIO pagará ao LOCADOR o valor de <strong>R$ 600,00 (Seiscentos reais)</strong> toda 
+        <b>{{ \Carbon\Carbon::parse($locacao->data_saida)->isoFormat('dddd') }}</b>, via PIX CNPJ: 41.110.090/0001-50 Banco Itaú Empresas em nome de Klvidal Locação de Veículos LTDA</p>
         <p><strong>9.1.2.</strong> Em caso de atraso, será cobrado um adicional de R$ 30,00 por dia, ou o LOCADOR poderá solicitar a devolução do veículo.</p>
         <p><strong>9.1.3.</strong> O comprovante de pagamento deve ser enviado até as 00:00 do dia do vencimento.</p>
         <p><strong>9.1.4.</strong> Um atraso superior a 15 dias pode resultar na rescisão do contrato, inscrição no SPC/Serasa e medidas judiciais como Busca e Apreensão, com o LOCATÁRIO arcando com todas as despesas.</p>

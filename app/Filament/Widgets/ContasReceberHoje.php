@@ -13,7 +13,7 @@ class ContasReceberHoje extends BaseWidget
 
   //  protected int | string | array $columnSpan = 'full';
 
-    protected static ?string $heading = 'Para Receber Hoje';
+    protected static ?string $heading = 'Para Receber Hoje/Vencidas';
 
     protected static ?int $sort = 6;
 
@@ -25,7 +25,9 @@ class ContasReceberHoje extends BaseWidget
 
         return $table
             ->query(
-                ContasReceber::query()->where('status', 0)->whereYear('data_vencimento', $ano)->whereMonth('data_vencimento', $mes)->whereDay('data_vencimento', $dia)
+                ContasReceber::query()
+                    ->where('status', 0)
+                    ->whereDate('data_vencimento', '<=', now()->toDateString())
             )
             ->columns([
                 Tables\Columns\TextColumn::make('cliente.nome')
