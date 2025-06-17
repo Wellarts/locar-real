@@ -516,6 +516,25 @@ class LocacaoResource extends Resource
                                     ])
 
                             ]),
+                    
+                                Forms\Components\Tabs\Tab::make('Assinaturas')
+                                    ->schema([
+                                        Fieldset::make('Assinaturas do Contrato')
+                                            ->schema([
+                                                Forms\Components\TextInput::make('testemunha_1')
+                                                    ->label('Testemunha 1')
+                                                    ->required(false),
+                                                Forms\Components\TextInput::make('testemunha_1_rg')
+                                                    ->label('RG'),
+                                                Forms\Components\TextInput::make('testemunha_2')
+                                                    ->label('Testemunha 2')
+                                                    ->required(false),                                                
+                                                Forms\Components\TextInput::make('testemunha_2_rg')
+                                                    ->label('RG'),
+                                            ]),
+                                    ]),
+                                
+                            
 
                         Forms\Components\Tabs\Tab::make('Ocorrências')
                             ->schema([
@@ -554,8 +573,9 @@ class LocacaoResource extends Resource
                                             ->addActionLabel('Novo')
                                     ]),
                             ]),
-                    ])
-            ]);
+                        ])
+                        ]); 
+            
     }
 
     public static function table(Table $table): Table

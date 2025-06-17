@@ -59,7 +59,7 @@
     <td> <p style="width: 100%; font-size:28px; font-weight: bold;" align="center">KLVIDAL LOCAÇÃO DE VEÍCULOS</p>
          <p style="font-size:16px;" align="center">Avenida Presidente Costa e Silva, 1460 - Helena Maria<br>
                                                             Osasco - SP - CEP: 06253-000 - Contato: (11) 97049-3745<br>
-                                                            Email: comercial@vrumloc.com.br - CNPJ: 41.110.090/0001-50<br>
+                                                            Email: klvidalocacaodeveiculos@gmail.com - CNPJ: 41.110.090/0001-50<br>
                                                            </p>
     </td>
   
@@ -542,17 +542,24 @@
     <div style="text-align: center; font-size: 12">Osasco, {{ $dataAtual->isoFormat('DD MMMM YYYY') }}<br><br><br><br>
 
             ___________________________________________________________<br>
-            LOCATÁRIO: {{$locacao->Cliente->nome}}<br><Br><br><br>
+            LOCATÁRIO: {{$locacao->Cliente->nome}}<br>
+            <b>CPF:</b> {{$cpfCnpj}}<br><br><br>
 
             ___________________________________________________________<br>
-            LOCADOR: KLVIDAL LOCAÇÃO DE VEÍCULOS.<br><Br><br><br>
+            LOCADOR: Klicie Lins de Souza Vidal Mendes <br>
+            <b>CNPJ:</b> 41.110.090/0001-50<br><br><br>
 
-            ___________________________________________________________<br>
-            TESTEMUNHA 1<br><Br><br><br>
+            @if(!empty($locacao->testemunha_1))
+                        ___________________________________________________________<br>            
+                        TESTEMUNHA: {{$locacao->testemunha_1}} <br>
+                        <b>RG: {{$locacao->testemunha_1_rg}}</b> <Br><br><br>
+            @endif
 
-            ___________________________________________________________<br>
-            TESTEMUNHA 2
-
+            @if(!empty($locacao->testemunha_2))
+                    __________________________________________________________<br>            
+                    TESTEMUNHA: {{$locacao->testemunha_2}} <br>
+                    <b>RG: {{$locacao->testemunha_2_rg}}</b> <br><br><br>
+            @endif
         </div>
 </body>
 </body>
