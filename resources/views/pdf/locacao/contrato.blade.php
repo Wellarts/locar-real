@@ -59,7 +59,8 @@
     <td> <p style="width: 100%; font-size:28px; font-weight: bold;" align="center">KLVIDAL LOCAÇÃO DE VEÍCULOS</p>
          <p style="font-size:16px;" align="center">Avenida Presidente Costa e Silva, 1460 - Helena Maria<br>
                                                             Osasco - SP - CEP: 06253-000 - Contato: (11) 97049-3745<br>
-                                                            Email: klvidalocacaodeveiculos@gmail.com - CNPJ: 41.110.090/0001-50<br>
+                                                            Email: klvidalocacaodeveiculos@gmail.com<br>
+                                                            CNPJ: 41.110.090/0001-50
                                                            </p>
     </td>
   
