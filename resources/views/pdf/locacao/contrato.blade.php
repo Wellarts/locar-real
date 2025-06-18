@@ -546,7 +546,7 @@
             <b>CPF:</b> {{$cpfCnpj}}<br><br><br>
 
             ___________________________________________________________<br>
-            LOCADOR: Klicie Lins de Souza Vidal Mendes <br>
+            LOCADOR: Klvidal Locação de Veículos <br>
             <b>CNPJ:</b> 41.110.090/0001-50<br><br><br>
 
             @if(!empty($locacao->testemunha_1))
