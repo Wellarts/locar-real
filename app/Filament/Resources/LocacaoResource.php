@@ -12,6 +12,7 @@ use App\Models\Locacao;
 use App\Models\Veiculo;
 use Carbon\Carbon;
 use DateTime;
+use FFI;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Forms;
@@ -516,25 +517,39 @@ class LocacaoResource extends Resource
                                     ])
 
                             ]),
-                    
-                                Forms\Components\Tabs\Tab::make('Assinaturas')
+
+                        Forms\Components\Tabs\Tab::make('Assinaturas de Terceiros')
+                            ->schema([
+                                Fieldset::make('Assinaturas no Contrato')
                                     ->schema([
-                                        Fieldset::make('Assinaturas do Contrato')
-                                            ->schema([
-                                                Forms\Components\TextInput::make('testemunha_1')
-                                                    ->label('Testemunha 1')
-                                                    ->required(false),
-                                                Forms\Components\TextInput::make('testemunha_1_rg')
-                                                    ->label('RG'),
-                                                Forms\Components\TextInput::make('testemunha_2')
-                                                    ->label('Testemunha 2')
-                                                    ->required(false),                                                
-                                                Forms\Components\TextInput::make('testemunha_2_rg')
-                                                    ->label('RG'),
-                                            ]),
+                                        Forms\Components\TextInput::make('testemunha_1')
+                                            ->label('Testemunha 1')
+                                            ->required(false),
+                                        Forms\Components\TextInput::make('testemunha_1_rg')
+                                            ->label('RG'),
+                                        Forms\Components\TextInput::make('testemunha_2')
+                                            ->label('Testemunha 2')
+                                            ->required(false),
+                                        Forms\Components\TextInput::make('testemunha_2_rg')
+                                            ->label('RG'),
+                                        Forms\Components\TextInput::make('fiador')
+                                            ->label('Fiador')
+                                            ->required(false),
+                                            
                                     ]),
-                                
-                            
+
+                                Fieldset::make('Dados Completo do Fiador')
+                                    ->schema([
+                                        Forms\Components\Textarea::make('dados_fiador')
+                                            ->label('')
+                                            ->autosize()
+                                            ->columnSpanFull(),
+
+
+                                    ]),
+                            ]),
+
+
 
                         Forms\Components\Tabs\Tab::make('Ocorrências')
                             ->schema([
@@ -573,9 +588,8 @@ class LocacaoResource extends Resource
                                             ->addActionLabel('Novo')
                                     ]),
                             ]),
-                        ])
-                        ]); 
-            
+                    ])
+            ]);
     }
 
     public static function table(Table $table): Table

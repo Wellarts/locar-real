@@ -43,6 +43,8 @@ class Locacao extends Model
         'testemunha_2',
         'testemunha_1_rg',
         'testemunha_2_rg',
+        'fiador',
+        'dados_fiador',
     ];
 
     protected $casts = [
