@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Filament\Resources\OrdemServicoResource\Pages;
+
+use App\Filament\Resources\OrdemServicoResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ListRecords;
+
+class ListOrdemServicos extends ListRecords
+{
+    protected static string $resource = OrdemServicoResource::class;
+
+    protected static ?string $title = 'Ordens de Serviço';
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\CreateAction::make()
+                ->label('Nova Ordem de Serviço')
+                ->icon('heroicon-o-plus')
+                ->modalHeading('Criar Nova Ordem de Serviço'),
+            Actions\Action::make('relatorio')
+                ->label('Relatório de Ordens de Serviço')
+                ->icon('heroicon-o-printer')
+                ->color('info')
+                ->modalHeading('Filtrar Relatório de Ordens de Serviço')
+                ->form([
+                    \Filament\Forms\Components\Fieldset::make('Filtros')
+                        ->columns([
+                            'sm' => 1,
+                            'md' => 2,
+                        ])
+                        ->schema([
+                            \Filament\Forms\Components\Select::make('cliente_id')
+                                ->label('Cliente')
+                                ->relationship('cliente', 'nome')
+                                ->searchable()
+                                ->preload(),
+                            \Filament\Forms\Components\Select::make('veiculo_id')
+                                ->label('Veículo')
+                                ->relationship('veiculo', 'modelo')
+                                ->searchable()
+                                ->preload(),
+                            \Filament\Forms\Components\Select::make('fornecedor_id')
+                                ->label('Fornecedor')
+                                ->relationship('fornecedor', 'nome')
+                                ->searchable()
+                                ->preload(),
+                            \Filament\Forms\Components\Select::make('status')
+                                ->label('Status')
+                                ->options([
+                                    '0' => 'Pendente',
+                                    '1' => 'Concluído',
+                                ])
+                                ->searchable(),
+                            \Filament\Forms\Components\DatePicker::make('data_inicio')
+                                ->label('Data Inicial'),
+                            \Filament\Forms\Components\DatePicker::make('data_fim')
+                                ->label('Data Final'),
+                        ]),
+                ])
+                ->action(function(array $data, $livewire) {
+                    $params = [];
+                    if(!empty($data['cliente_id'])) $params['cliente_id'] = $data['cliente_id'];
+                    if(!empty($data['veiculo_id'])) $params['veiculo_id'] = $data['veiculo_id'];
+                    if(!empty($data['fornecedor_id'])) $params['fornecedor_id'] = $data['fornecedor_id'];
+                    if(!empty($data['data_inicio'])) $params['data_inicio'] = $data['data_inicio'];
+                    if(!empty($data['data_fim'])) $params['data_fim'] = $data['data_fim'];
+                    if(!empty($data['status'])) $params['status'] = $data['status'];
+                    $queryString = http_build_query($params);
+                    $url = route('imprimirOrdemServicoRelatorio') . ($queryString ? ('?' . $queryString) : '');
+                    $livewire->js("window.open('{$url}', '_blank')");
+                }),
+               
+        ];
+    }
+}

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Contrato;
 use App\Http\Controllers\FichaAgendamento;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DocumentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () { return redirect('/admin'); })->name('login');
 
 Route::get('pdf/locacao/{id}',[Contrato::class, 'printLocacao'])->name('imprimirLocacao');
-Route::get('pdf/agendamento/{id}',[FichaAgendamento::class, 'printAgendamento'])->name('imprimirAgendamento');
+Route::get('pdf/documento/{id}',[DocumentoController::class, 'ordemServico'])->name('imprimirDocumento');
+Route::get('pdf/ordemServico',[DocumentoController::class, 'ordemServicoRelatorio'])->name('imprimirOrdemServicoRelatorio');

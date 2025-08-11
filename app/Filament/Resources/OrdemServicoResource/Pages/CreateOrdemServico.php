@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Filament\Resources\OrdemServicoResource\Pages;
+
+use App\Filament\Resources\OrdemServicoResource;
+use Filament\Actions;
+use Filament\Resources\Pages\CreateRecord;
+
+class CreateOrdemServico extends CreateRecord
+{
+    protected static string $resource = OrdemServicoResource::class;
+
+    protected static ?string $title = 'Criar Nova Ordem de Serviço';
+}

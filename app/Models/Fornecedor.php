@@ -42,6 +42,11 @@ class Fornecedor extends Model
         return $this->hasMany(ContasPagar::class);
     }
 
+    public function OrdemServico()
+    {
+        return $this->hasMany(OrdemServico::class);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

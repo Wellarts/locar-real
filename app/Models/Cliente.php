@@ -61,6 +61,11 @@ class Cliente extends Model
         return $this->hasMany(ContasReceber::class);
     }
 
+    public function OrdemServico()
+    {
+        return $this->hasMany(OrdemServico::class);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
