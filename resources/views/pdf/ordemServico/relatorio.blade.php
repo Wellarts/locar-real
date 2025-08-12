@@ -71,7 +71,7 @@
                 </td>
                 <td style="width: 80%; text-align: right;">
                     <strong style="font-size:1.2em;color:#000308;">REAL LOCAÇÕES E SERVIÇOS LTDA</strong><br>
-                    <span style="color:#6b7280;">CNPJ: 2.874.349/0001-31<br>
+                    <span style="color:#6b7280;">CNPJ: 12.874.349/0001-31<br>
                         Endereço: Rua Joaquim domingos Neto, 554, Centro-Horizonte. CE 62.880-168<br>
                         Contato: (85) 3411-8010<br>
                         Email: Comercial@reallocmotos.com.br</span>
