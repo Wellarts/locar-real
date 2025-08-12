@@ -156,7 +156,7 @@
                 @foreach ($ordemServico->itens as $index => $item)
                     <tr>
                         <td style="font-size: 11px">{{ $index + 1 }}</td>
-                        <td style="font-size: 11px">{{ $item->pecaServico->tipo == 1 ? 'Peça' : 'Serviço' ?? '' }}</td>
+                        <td style="font-size: 11px">{{ $item->pecaServico->tipo == 0 ? 'Peça' : 'Serviço' ?? '' }}</td>
                         <td style="font-size: 11px">{{ $item->tipo == 1 ? 'Preventiva' : 'Corretiva' ?? '' }}</td>
                         <td style="font-size: 11px">{{ $item->pecaServico->nome ?? '' }}</td>
                         <td style="font-size: 11px">{{ $item->descricao }}</td>
