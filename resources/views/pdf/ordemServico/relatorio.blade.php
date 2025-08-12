@@ -147,7 +147,7 @@
                                     }
                                 @endphp
                             <tr>
-                                <td style="font-size:11px;">{{ $item->pecaServico->tipo == 0 ? 'Serviço' : 'Peça' ?? '' }}</td>
+                                <td style="font-size:11px;">{{ $item->pecaServico->tipo == 1 ? 'Serviço' : 'Peça' ?? '' }}</td>
                                 <td style="font-size:11px;">{{ $item->tipo == 1 ? 'Preventiva' : 'Corretiva' ?? '' }}</td>
                                 <td style="font-size:11px;">{{ $item->pecaServico->nome ?? '' }}</td>
                                 <td style="font-size:11px;">{{ $item->descricao }}</td>
