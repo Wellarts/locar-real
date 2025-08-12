@@ -73,7 +73,7 @@ class ItensRelationManager extends RelationManager
                     ])
                     ->required()
                     ->label('Tipo'),
-                Forms\Components\TextArea::make('descricao')
+                Forms\Components\Textarea::make('descricao')
                     ->required(false)
                     ->autoSize()
                     ->label('Descrição'),
