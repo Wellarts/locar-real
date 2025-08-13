@@ -157,7 +157,18 @@
                     <tr>
                         <td style="font-size: 11px">{{ $index + 1 }}</td>
                         <td style="font-size: 11px">{{ $item->pecaServico->tipo == 0 ? 'Peça' : 'Serviço' ?? '' }}</td>
-                        <td style="font-size: 11px">{{ $item->tipo == 1 ? 'Preventiva' : 'Corretiva' ?? '' }}</td>
+                        <td style="font-size: 11px">
+                            @php
+                                $tipos = [
+                                    1 => 'Preventiva',
+                                    2 => 'Corretiva',
+                                    3 => 'Avaria',
+                                    4 => 'Multa',
+                                    5 => 'Outros'
+                                ];
+                            @endphp
+                            {{ $tipos[$item->tipo] ?? '' }}
+                        </td>
                         <td style="font-size: 11px">{{ $item->pecaServico->nome ?? '' }}</td>
                         <td style="font-size: 11px">{{ $item->descricao }}</td>
                         <td style="text-align:center; font-size: 11px">{{ $item->quantidade }}</td>

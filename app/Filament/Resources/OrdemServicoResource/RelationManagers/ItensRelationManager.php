@@ -70,6 +70,9 @@ class ItensRelationManager extends RelationManager
                     ->options([
                         '1' => 'Preventiva',
                         '2' => 'Corretiva',
+                        '3' => 'Avaria',
+                        '4' => 'Multa',
+                        '5' => 'Outros'
                     ])
                     ->required()
                     ->label('Tipo'),
@@ -126,8 +129,11 @@ class ItensRelationManager extends RelationManager
                     ->color(fn ($state) => match ($state) {
                         '1' => 'success',
                         '2' => 'danger',
+                        '3' => 'info',
+                        '4' => 'primary',
+                        '5' => 'secondary',
                     })
-                    ->formatStateUsing(fn ($state) => $state === '1' ? 'Preventiva' : 'Corretiva'),
+                    ->formatStateUsing(fn ($state) => $state === '1' ? 'Preventiva' : ($state === '2' ? 'Corretiva' : ($state === '3' ? 'Avaria' : ($state === '4' ? 'Multa' : 'Outros')))),
                 Tables\Columns\TextColumn::make('descricao')
                     ->label('Descrição'),
                 Tables\Columns\TextColumn::make('quantidade')

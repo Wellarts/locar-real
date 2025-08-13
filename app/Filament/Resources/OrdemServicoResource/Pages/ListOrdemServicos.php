@@ -6,6 +6,7 @@ use App\Filament\Resources\OrdemServicoResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
+
 class ListOrdemServicos extends ListRecords
 {
     protected static string $resource = OrdemServicoResource::class;
@@ -19,6 +20,16 @@ class ListOrdemServicos extends ListRecords
                 ->label('Nova Ordem de Serviço')
                 ->icon('heroicon-o-plus')
                 ->modalHeading('Criar Nova Ordem de Serviço'),
+                // ->after(function($record) {
+                //     // Atualiza o km_atual do veículo escolhido na ordem de serviço
+                //     if ($record->veiculo_id && $record->km_troca) {
+                //         $veiculo = \App\Models\Veiculo::find($record->veiculo_id);
+                //           if ($veiculo) {
+                //             $veiculo->km_atual = $record->km_troca;
+                //             $veiculo->save();
+                //         }
+                //     }
+                // }),
             Actions\Action::make('relatorio')
                 ->label('Relatório de Ordens de Serviço')
                 ->icon('heroicon-o-printer')

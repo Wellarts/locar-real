@@ -114,6 +114,9 @@ class OrdemServicoResource extends Resource
                 Tables\Columns\TextColumn::make('veiculo.modelo')
                     ->searchable()
                     ->label('Veículo'),
+                Tables\Columns\TextColumn::make('veiculo.placa')
+                    ->searchable()
+                    ->label('Placa'),
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status')
                     ->alignCenter()
@@ -158,6 +161,16 @@ class OrdemServicoResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                //     ->after(function($record) {
+                //     // Atualiza o km_atual do veículo escolhido na ordem de serviço
+                //     if ($record->veiculo_id && $record->km_troca) {
+                //         $veiculo = \App\Models\Veiculo::find($record->veiculo_id);
+                //         if ($veiculo) {
+                //             $veiculo->km_atual = $record->km_troca;
+                //             $veiculo->save();
+                //         }
+                //     }
+                // }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
