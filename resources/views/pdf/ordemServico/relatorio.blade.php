@@ -86,7 +86,7 @@
                 <span style="color:#6b7280;">CNPJ: 12.874.349/0001-31<br>
                     Endereço: Rua Joaquim domingos Neto, 554, Centro-Horizonte. CE 62.880-168<br>
                     Contato: (85) 3411-8010<br>
-                    Email: Comercial@reallocmotos.com.br</span>
+                    Email: comercial@reallocmotos.com.br</span>
             </td>
         <tr>
             <td colspan="4" style="text-align: right;">
