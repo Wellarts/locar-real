@@ -18,4 +18,18 @@ class EditOrdemServico extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function afterSave(): void
+    {
+        $record = $this->record;
+
+        // Atualiza o km_atual do veículo escolhido na ordem de serviço
+        if ($record->veiculo_id && $record->km_troca) {
+            $veiculo = \App\Models\Veiculo::find($record->veiculo_id);
+            if ($veiculo) {
+                $veiculo->km_atual = $record->km_troca;
+                $veiculo->save();
+            }
+        }
+    }
 }

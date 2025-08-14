@@ -7,6 +7,7 @@ use App\Filament\Resources\OrdemServicoResource\RelationManagers;
 use App\Models\OrdemServico;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Columns\Summarizers\Sum;
 use Illuminate\Database\Eloquent\Model;
+
 
 class OrdemServicoResource extends Resource
 {
@@ -60,7 +62,13 @@ class OrdemServicoResource extends Resource
                                 }
                             )
                             ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->modelo} {$record->placa}")
-                            ->searchable(['modelo', 'placa']),
+                            ->searchable(['modelo', 'placa'])
+                            ->afterStateUpdated(function ($state, callable $set) {
+                                $veiculo = \App\Models\Veiculo::find($state);
+                                if ($veiculo) {
+                                    $set('km_troca', $veiculo->km_atual);
+                                }
+                            }),
 
                         Forms\Components\Select::make('user_id')
                             ->relationship('user', 'name')
@@ -74,9 +82,9 @@ class OrdemServicoResource extends Resource
                             ->default(now())
                             ->label('Data de Emissão'),
 
-                        Forms\Components\TextInput::make('km_troca')
-                            ->numeric()
+                        Forms\Components\TextInput::make('km_troca')                                   
                             ->required()
+                            ->hint('Km atual inserida automaticamente')
                             ->label('KM de Troca'),
                         Forms\Components\ToggleButtons::make('status')
                             ->options([
@@ -160,17 +168,7 @@ class OrdemServicoResource extends Resource
                     ->relationship('veiculo', 'modelo'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                //     ->after(function($record) {
-                //     // Atualiza o km_atual do veículo escolhido na ordem de serviço
-                //     if ($record->veiculo_id && $record->km_troca) {
-                //         $veiculo = \App\Models\Veiculo::find($record->veiculo_id);
-                //         if ($veiculo) {
-                //             $veiculo->km_atual = $record->km_troca;
-                //             $veiculo->save();
-                //         }
-                //     }
-                // }),
+                Tables\Actions\EditAction::make(),                     
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

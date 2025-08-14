@@ -5,6 +5,8 @@ namespace App\Filament\Resources\OrdemServicoResource\Pages;
 use App\Filament\Resources\OrdemServicoResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 
 class ListOrdemServicos extends ListRecords
@@ -20,11 +22,11 @@ class ListOrdemServicos extends ListRecords
                 ->label('Nova Ordem de Serviço')
                 ->icon('heroicon-o-plus')
                 ->modalHeading('Criar Nova Ordem de Serviço'),
-                // ->after(function($record) {
+                // ->before(function($record) {
                 //     // Atualiza o km_atual do veículo escolhido na ordem de serviço
                 //     if ($record->veiculo_id && $record->km_troca) {
                 //         $veiculo = \App\Models\Veiculo::find($record->veiculo_id);
-                //           if ($veiculo) {
+                //         if ($veiculo) {
                 //             $veiculo->km_atual = $record->km_troca;
                 //             $veiculo->save();
                 //         }
@@ -48,10 +50,16 @@ class ListOrdemServicos extends ListRecords
                                 ->searchable()
                                 ->preload(),
                             \Filament\Forms\Components\Select::make('veiculo_id')
-                                ->label('Veículo')
-                                ->relationship('veiculo', 'modelo')
-                                ->searchable()
-                                ->preload(),
+                             ->label('Veículo')
+                            ->live(onBlur: true)
+                            ->relationship(
+                                name: 'veiculo',
+                                modifyQueryUsing: function (Builder $query, $context) {
+                                    $query->where('status', 1)->orderBy('modelo')->orderBy('placa');
+                                }
+                            )
+                            ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->modelo} {$record->placa}")
+                            ->searchable(['modelo', 'placa']),
                             \Filament\Forms\Components\Select::make('fornecedor_id')
                                 ->label('Fornecedor')
                                 ->relationship('fornecedor', 'nome')
