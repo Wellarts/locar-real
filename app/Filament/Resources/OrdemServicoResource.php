@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Columns\Summarizers\Sum;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Tables\Filters\Filter;
 
 
 class OrdemServicoResource extends Resource
@@ -109,6 +110,11 @@ class OrdemServicoResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->label('Nº OS')
+                    ->alignCenter()
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('cliente.nome')
                     ->searchable()
                     ->label('Cliente (Contrato)'),
@@ -154,6 +160,14 @@ class OrdemServicoResource extends Resource
                     ->alignCenter(),
             ])
             ->filters([
+                SelectFilter::make('status')
+                    ->label('Status')
+                    ->options([
+                        '0' => 'Pendente',
+                        '1' => 'Concluído',
+                    ])
+                    ->default('0'),
+
                 SelectFilter::make('cliente_id')
                     ->label('Cliente (Contrato)')
                     ->relationship('cliente', 'nome'),
