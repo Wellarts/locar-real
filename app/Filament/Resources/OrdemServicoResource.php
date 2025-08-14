@@ -109,6 +109,7 @@ class OrdemServicoResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('Nº OS')
@@ -165,8 +166,7 @@ class OrdemServicoResource extends Resource
                     ->options([
                         '0' => 'Pendente',
                         '1' => 'Concluído',
-                    ])
-                    ->default('0'),
+                    ]),              
 
                 SelectFilter::make('cliente_id')
                     ->label('Cliente (Contrato)')
