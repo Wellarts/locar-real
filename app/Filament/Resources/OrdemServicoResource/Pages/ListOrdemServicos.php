@@ -65,6 +65,11 @@ class ListOrdemServicos extends ListRecords
                                 ->relationship('fornecedor', 'nome')
                                 ->searchable()
                                 ->preload(),
+                            \Filament\Forms\Components\Select::make('forma_pagamento_id')
+                                ->label('Forma de Pagamento')
+                                ->relationship('formaPagamento', 'nome')
+                                ->searchable()
+                                ->preload(),
                             \Filament\Forms\Components\Select::make('status')
                                 ->label('Status')
                                 ->options([
@@ -83,6 +88,7 @@ class ListOrdemServicos extends ListRecords
                     if(!empty($data['cliente_id'])) $params['cliente_id'] = $data['cliente_id'];
                     if(!empty($data['veiculo_id'])) $params['veiculo_id'] = $data['veiculo_id'];
                     if(!empty($data['fornecedor_id'])) $params['fornecedor_id'] = $data['fornecedor_id'];
+                    if(!empty($data['forma_pagamento_id'])) $params['forma_pagamento_id'] = $data['forma_pagamento_id'];
                     if(!empty($data['data_inicio'])) $params['data_inicio'] = $data['data_inicio'];
                     if(!empty($data['data_fim'])) $params['data_fim'] = $data['data_fim'];
                     if(!empty($data['status'])) $params['status'] = $data['status'];

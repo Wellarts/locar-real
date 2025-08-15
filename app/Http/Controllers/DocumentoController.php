@@ -27,6 +27,9 @@ class DocumentoController extends Controller
         if ($request->filled('fornecedor_id')) {
             $query->where('fornecedor_id', $request->fornecedor_id);
         }
+        if ($request->filled('forma_pagamento_id')) {
+            $query->where('forma_pagamento_id', $request->forma_pagamento_id);
+        }
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }

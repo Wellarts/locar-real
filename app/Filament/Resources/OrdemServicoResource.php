@@ -206,61 +206,69 @@ class OrdemServicoResource extends Resource
         ];
     }
 
-    public static function getGlobalActions(): array
-    {
-        return [
-            Tables\Actions\Action::make('relatorio')
-                ->label('Relatório de Ordens de Serviço')
-                ->icon('heroicon-o-printer')
-                ->color('info')
-                ->modalHeading('Filtrar Relatório de Ordens de Serviço')
-                ->form([
-                    Forms\Components\Select::make('cliente_id')
-                        ->label('Cliente')
-                        ->relationship('cliente', 'nome')
-                        ->searchable()
-                        ->preload(),
-                    Forms\Components\Select::make('veiculo_id')
-                        ->label('Veículo')
-                        ->relationship('veiculo', 'modelo')
-                        ->searchable()
-                        ->preload(),
-                    Forms\Components\Select::make('fornecedor_id')
-                        ->label('Fornecedor')
-                        ->relationship('fornecedor', 'nome')
-                        ->searchable()
-                        ->preload(),
-                    Forms\Components\DatePicker::make('data_inicio')
-                        ->label('Data Inicial'),
-                    Forms\Components\DatePicker::make('data_fim')
-                        ->label('Data Final'),
-                ])
-                ->action(function(array $data) {
-                    $query = OrdemServico::query();
-                    if(!empty($data['cliente_id'])) {
-                        $query->where('cliente_id', $data['cliente_id']);
-                    }
-                    if(!empty($data['veiculo_id'])) {
-                        $query->where('veiculo_id', $data['veiculo_id']);
-                    }
-                    if(!empty($data['fornecedor_id'])) {
-                        $query->where('fornecedor_id', $data['fornecedor_id']);
-                    }
-                    if(!empty($data['data_inicio'])) {
-                        $query->whereDate('data_emissao', '>=', $data['data_inicio']);
-                    }
-                    if(!empty($data['data_fim'])) {
-                        $query->whereDate('data_emissao', '<=', $data['data_fim']);
-                    }
-                    $ordemServicoRelatorio = $query->get();
-                    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.ordemServico.relatorio', compact('ordemServicoRelatorio'))
-                        ->setPaper('a4', 'landscape');
-                    return response()->streamDownload(function() use ($pdf) {
-                        echo $pdf->stream();
-                    }, 'ordem_servico_relatorio.pdf');
-                })
-        ];
-    }
+    // public static function getGlobalActions(): array
+    // {
+    //     return [
+    //         Tables\Actions\Action::make('relatorio')
+    //             ->label('Relatório de Ordens de Serviço')
+    //             ->icon('heroicon-o-printer')
+    //             ->color('info')
+    //             ->modalHeading('Filtrar Relatório de Ordens de Serviço')
+    //             ->form([
+    //                 Forms\Components\Select::make('cliente_id')
+    //                     ->label('Cliente')
+    //                     ->relationship('cliente', 'nome')
+    //                     ->searchable()
+    //                     ->preload(),
+    //                 Forms\Components\Select::make('veiculo_id')
+    //                     ->label('Veículo')
+    //                     ->relationship('veiculo', 'modelo')
+    //                     ->searchable()
+    //                     ->preload(),
+    //                 Forms\Components\Select::make('fornecedor_id')
+    //                     ->label('Fornecedor')
+    //                     ->relationship('fornecedor', 'nome')
+    //                     ->searchable()
+    //                     ->preload(),
+    //                 Forms\Components\Select::make('forma_pagamento_id')
+    //                     ->label('Forma de Pagamento')
+    //                     ->relationship('formaPagamento', 'nome')
+    //                     ->searchable()
+    //                     ->preload(),
+    //                 Forms\Components\DatePicker::make('data_inicio')
+    //                     ->label('Data Inicial'),
+    //                 Forms\Components\DatePicker::make('data_fim')
+    //                     ->label('Data Final'),
+    //             ])
+    //             ->action(function(array $data) {
+    //                 $query = OrdemServico::query();
+    //                 if(!empty($data['cliente_id'])) {
+    //                     $query->where('cliente_id', $data['cliente_id']);
+    //                 }
+    //                 if(!empty($data['veiculo_id'])) {
+    //                     $query->where('veiculo_id', $data['veiculo_id']);
+    //                 }
+    //                 if(!empty($data['fornecedor_id'])) {
+    //                     $query->where('fornecedor_id', $data['fornecedor_id']);
+    //                 }
+    //                 if(!empty($data['forma_pagamento_id'])) {
+    //                     $query->where('forma_pagamento_id', $data['forma_pagamento_id']);
+    //                 }
+    //                 if(!empty($data['data_inicio'])) {
+    //                     $query->whereDate('data_emissao', '>=', $data['data_inicio']);
+    //                 }
+    //                 if(!empty($data['data_fim'])) {
+    //                     $query->whereDate('data_emissao', '<=', $data['data_fim']);
+    //                 }
+    //                 $ordemServicoRelatorio = $query->get();
+    //                 $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.ordemServico.relatorio', compact('ordemServicoRelatorio'))
+    //                     ->setPaper('a4', 'landscape');
+    //                 return response()->streamDownload(function() use ($pdf) {
+    //                     echo $pdf->stream();
+    //                 }, 'ordem_servico_relatorio.pdf');
+    //             })
+    //     ];
+    // }
 
     public static function getPages(): array
     {
