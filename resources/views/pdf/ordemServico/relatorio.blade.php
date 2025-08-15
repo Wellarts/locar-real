@@ -107,6 +107,7 @@
                 <th style="text-align:left;">#</th>
                 <th style="text-align:left;">Cliente</th>
                 <th style="text-align:left;">Fornecedor</th>
+                <th style="text-align:left;">Pagamento</th>
                 <th style="text-align:left;">Veículo</th>
                 <th style="text-align:left;">Data de Emissão</th>
                 <th style="text-align:left;">Autorizado Por</th>
@@ -118,6 +119,7 @@
                     <td>{{ $ordem->id }}</td>
                     <td>{{ $ordem->cliente->nome ?? '' }}</td>
                     <td>{{ $ordem->fornecedor->nome ?? '' }}</td>
+                    <td>{{ $ordem->formaPagamento->nome ?? '' }}</td>
                     <td>{{ $ordem->veiculo->modelo ?? '' }} - {{ $ordem->veiculo->placa ?? '' }} -
                         {{ $ordem->veiculo->cor ?? '' }}</td>
                     <td>{{ \Carbon\Carbon::parse($ordem->data_emissao ?? $ordem->data_abertura)->format('d/m/Y') }}</td>
@@ -153,7 +155,7 @@
                                     $totalCorretiva = 0;
                                     $totalAvaria = 0;
                                     $totalMulta = 0;
-                                    $totalOutros = 0;
+                                    $totalOutros = 0;                                    
                                 @endphp
                                 @foreach ($ordem->itens as $item)
                                     @php
@@ -222,6 +224,7 @@
             $totaisVeiculo = [];
             $totaisCliente = [];
             $totaisFornecedor = [];
+            $totaisPagamento = [];
             $totalPreventivaGeral = 0;
             $totalCorretivaGeral = 0;
             $totalAvariaGeral = 0;
@@ -232,9 +235,11 @@
                 $veiculoKey = ($ordem->veiculo->modelo ?? '') . ' ' . ($ordem->veiculo->placa ?? '');
                 $clienteKey = $ordem->cliente->nome ?? '';
                 $fornecedorKey = $ordem->fornecedor->nome ?? '';
+                $pagamentoKey = $ordem->formaPagamento->nome ?? '';
                 $totaisVeiculo[$veiculoKey] = ($totaisVeiculo[$veiculoKey] ?? 0) + $valorTotal;
                 $totaisCliente[$clienteKey] = ($totaisCliente[$clienteKey] ?? 0) + $valorTotal;
                 $totaisFornecedor[$fornecedorKey] = ($totaisFornecedor[$fornecedorKey] ?? 0) + $valorTotal;
+                $totaisPagamento[$pagamentoKey] = ($totaisPagamento[$pagamentoKey] ?? 0) + $valorTotal;
                 if (isset($ordem->itens) && count($ordem->itens)) {
                     foreach ($ordem->itens as $item) {
                         if ($item->tipo == 1) {
@@ -292,6 +297,16 @@
             <tr>
                 <td colspan="2" style="height:12px;"></td>
             </tr>
+            <tr>
+                <td colspan="2" style="font-size:15px; background:#f2f2f4; padding:10px;"><strong>Totais por
+                        Pagamento:</strong></td>
+            </tr>
+            @foreach ($totaisPagamento as $pagamento => $total)
+                <tr>
+                    <td style="padding-left:24px;">{{ $pagamento }}</td>
+                    <td style="text-align:right;">R$ {{ number_format($total, 2, ',', '.') }}</td>
+                </tr>
+            @endforeach            
             <tr>
                 <td style="font-size:15px; background:#f2f2f4; padding:10px;"><strong>Total Geral Preventiva:</strong>
                 </td>

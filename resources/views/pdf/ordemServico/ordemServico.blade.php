@@ -109,8 +109,9 @@
             <table>
                 <tr>
                     <th>Cliente (Contrato):</th>
-                    <td colspan="5" style="font-size: 12px">{{ $ordemServico->cliente->nome ?? '' }}</td>
-
+                    <td colspan="3" style="font-size: 12px">{{ $ordemServico->cliente->nome ?? '' }}</td>
+                    <th>Pagamento:</th>
+                    <td style="font-size: 12px">{{ $ordemServico->formaPagamento->nome ?? '' }}</td>
                 </tr>
                 <tr>
                     <th>Fornecedor:</th>

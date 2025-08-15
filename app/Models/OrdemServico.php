@@ -44,4 +44,9 @@ class OrdemServico extends Model
     {
         return $this->hasMany(ItensOrdemServico::class);
     }
+
+    public function formaPagamento()
+    {
+        return $this->belongsTo(FormaPagamento::class);
+    }
 }

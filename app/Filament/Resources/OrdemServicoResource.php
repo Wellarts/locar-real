@@ -52,6 +52,13 @@ class OrdemServicoResource extends Resource
                             ->required()
                             ->label('Fornecedor'),
 
+                        Forms\Components\Select::make('forma_pagamento_id')
+                            ->relationship('formaPagamento', 'nome')
+                            ->searchable()
+                            ->preload()
+                            ->required()
+                            ->label('Forma de Pagamento'),
+
                         Forms\Components\Select::make('veiculo_id')
                             ->required()
                             ->label('Veículo')
@@ -95,7 +102,7 @@ class OrdemServicoResource extends Resource
                             ->colors([
                                 '0' => 'danger',
                                 '1' => 'success',
-                            ])
+                            ])                           
                             ->inline()
                             ->default(0)
                             ->grouped()
