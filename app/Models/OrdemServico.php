@@ -18,6 +18,7 @@ class OrdemServico extends Model
         'km_troca',
         'valor_total',
         'status',
+        'forma_pagamento'
     ];
 
     public function cliente()
