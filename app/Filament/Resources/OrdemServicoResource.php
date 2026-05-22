@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Columns\Summarizers\Sum;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Filters\Filter;
 
@@ -123,11 +124,33 @@ class OrdemServicoResource extends Resource
                     ->alignCenter()
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('cliente.nome')
-                    ->searchable()
-                    ->label('Cliente (Contrato)'),
+                // Tables\Columns\TextColumn::make('cliente.nome')
+                //     ->searchable()
+                //     ->limit(20)
+                //     ->tooltip(function (TextColumn $column): ?string {
+                //         $state = $column->getState();
+
+                //         if (strlen($state) <= $column->getCharacterLimit()) {
+                //             return null;
+                //         }
+
+                //         // Only render the tooltip if the column content exceeds the length limit.
+                //         return $state;
+                //     })
+                //     ->label('Cliente (Contrato)'),
                 Tables\Columns\TextColumn::make('fornecedor.nome')
                     ->searchable()
+                    ->limit(10)
+                    ->tooltip(function (TextColumn $column): ?string {
+                        $state = $column->getState();
+
+                        if (strlen($state) <= $column->getCharacterLimit()) {
+                            return null;
+                        }
+
+                        // Only render the tooltip if the column content exceeds the length limit.
+                        return $state;
+                    })
                     ->label('Fornecedor'),
                 Tables\Columns\TextColumn::make('data_emissao')
                     ->date('d/m/Y')
@@ -135,6 +158,17 @@ class OrdemServicoResource extends Resource
                     ->label('Data de Emissão'),
                 Tables\Columns\TextColumn::make('veiculo.modelo')
                     ->searchable()
+                    ->limit(20)
+                    ->tooltip(function (TextColumn $column): ?string {
+                        $state = $column->getState();
+
+                        if (strlen($state) <= $column->getCharacterLimit()) {
+                            return null;
+                        }
+
+                        // Only render the tooltip if the column content exceeds the length limit.
+                        return $state;
+                    })
                     ->label('Veículo'),
                 Tables\Columns\TextColumn::make('veiculo.placa')
                     ->searchable()
