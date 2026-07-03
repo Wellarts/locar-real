@@ -44,6 +44,7 @@ class CustoVeiculoExporter extends Exporter
             ExportColumn::make('fornecedor.nome'),
             ExportColumn::make('veiculo.modelo'),
             ExportColumn::make('veiculo.placa'),
+            ExportColumn::make('categoria.nome'),
             ExportColumn::make('km_atual'),
             ExportColumn::make('data')
                 ->formatStateUsing(fn($state) => Carbon::parse($state)->format('d/m/Y')),
